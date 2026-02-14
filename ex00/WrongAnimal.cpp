@@ -13,18 +13,21 @@
 #include "WrongAnimal.hpp"
 #include <iostream>
 
+// Default constructor
 WrongAnimal::WrongAnimal()
 {
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal& other)
+// Copy constructor
+WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
 	this->type = other.type;
 }
 
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
+// Copy assignment operator
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 {
 	std::cout << "WrongAnimal copy assignment operator called" << std::endl;
 	if (this != &other)
@@ -32,16 +35,19 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
 	return *this;
 }
 
+// Non-virtual destructor - won't properly destroy derived classes!
 WrongAnimal::~WrongAnimal()
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
+// Getter: returns the type
 std::string WrongAnimal::getType() const
 {
 	return this->type;
 }
 
+// Non-virtual method: NO polymorphism - static binding at compile time
 void WrongAnimal::makeSound() const
 {
 	std::cout << "WrongAnimal makes a sound" << std::endl;

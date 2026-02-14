@@ -20,28 +20,36 @@
 int main()
 {
 	std::cout << "----- Correct polymorphism -----" << std::endl;
-	const Animal* meta = new Animal();
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
 
+	// Using base class pointers to store derived objects
+	const Animal *meta = new Animal();
+	const Animal *dog = new Dog(); // Dog object, Animal pointer
+	const Animal *cat = new Cat(); // Cat object, Animal pointer
+
+	// getType() works correctly (returns "Dog" and "Cat")
 	std::cout << dog->getType() << std::endl;
 	std::cout << cat->getType() << std::endl;
 
-	dog->makeSound();
-	cat->makeSound();
-	meta->makeSound();
+	// makeSound() calls the correct derived version (RUNTIME polymorphism)
+	dog->makeSound();  // Outputs: "guauuuu" (Dog's version)
+	cat->makeSound();  // Outputs: "miauuuu" (Cat's version)
+	meta->makeSound(); // Outputs: "Animal makes a sound" (Animal's version)
 
+	// Virtual destructor ensures proper cleanup of derived classes
 	delete meta;
 	delete dog;
 	delete cat;
 
 	std::cout << "\n----- Wrong polymorphism -----" << std::endl;
-	const WrongAnimal* wrong = new WrongCat();
 
-	std::cout << wrong->getType() << std::endl;
-	wrong->makeSound();
+	// WrongCat object stored in WrongAnimal pointer
+	const WrongAnimal *wrong = new WrongCat();
 
-	delete wrong;
+	std::cout << wrong->getType() << std::endl; // Returns "WrongCat" (works)
+	wrong->makeSound();							// PROBLEM: Calls WrongAnimal's version, not WrongCat's!
+												// No virtual = static binding at compile time
+
+	delete wrong; // Only calls ~WrongAnimal(), not ~WrongCat() (potential leak!)
 
 	return 0;
 }

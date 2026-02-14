@@ -15,14 +15,17 @@
 
 #include "Animal.hpp"
 
+// Cat class: inherits from Animal (public inheritance)
 class Cat : public Animal
 {
-    public:
+public:
+    // Orthodox Canonical Form
     Cat();
-    Cat(const Cat& other);
-    Cat& operator=(const Cat& other);
-    virtual ~Cat();
+    Cat(const Cat &other);
+    Cat &operator=(const Cat &other);
+    virtual ~Cat(); // Virtual destructor inherited from Animal
 
+    // Overrides Animal::makeSound() - cat-specific sound
     virtual void makeSound() const;
 };
 

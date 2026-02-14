@@ -15,19 +15,23 @@
 
 #include <string>
 
+// IMPORTANT: Wrong implementation - demonstrates what happens WITHOUT virtual functions
+// This class shows incorrect polymorphism (static binding at compile time)
 class WrongAnimal
 {
-	protected:
-		std::string type;
+protected:
+	std::string type;
 
-	public:
-		WrongAnimal();
-		WrongAnimal(const WrongAnimal& other);
-		WrongAnimal& operator=(const WrongAnimal& other);
-		~WrongAnimal();
+public:
+	WrongAnimal();
+	WrongAnimal(const WrongAnimal &other);
+	WrongAnimal &operator=(const WrongAnimal &other);
+	~WrongAnimal(); // NO virtual destructor - potential memory leak!
 
-		std::string getType() const;
-		void makeSound() const;
+	std::string getType() const;
+
+	// NO virtual keyword - no polymorphism! Will always call WrongAnimal's version
+	void makeSound() const;
 };
 
 #endif

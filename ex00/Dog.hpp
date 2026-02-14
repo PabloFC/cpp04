@@ -15,15 +15,18 @@
 
 #include "Animal.hpp"
 
+// Dog class: inherits from Animal (public inheritance)
 class Dog : public Animal
 {
-	public:
-		Dog();
-		Dog(const Dog& other);
-		Dog& operator=(const Dog& other);
-		virtual ~Dog();
+public:
+	// Orthodox Canonical Form
+	Dog();
+	Dog(const Dog &other);
+	Dog &operator=(const Dog &other);
+	virtual ~Dog(); // Virtual destructor inherited from Animal
 
-		virtual void makeSound() const;
+	// Overrides Animal::makeSound() - dog-specific sound
+	virtual void makeSound() const;
 };
 
 #endif

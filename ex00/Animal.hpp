@@ -10,25 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
 #include <string>
 
+// Base class demonstrating proper polymorphism in C++
 class Animal
 {
-	protected:
-		std::string type;
+protected:
+	std::string type; // Protected: accessible from derived classes
 
-	public:
-		Animal();
-		Animal(const Animal& other);
-		Animal& operator=(const Animal& other);
-		virtual ~Animal();
+public:
+	// Orthodox Canonical Form
+	Animal();
+	Animal(const Animal &other);
+	Animal &operator=(const Animal &other);
+	virtual ~Animal(); // Virtual destructor prevents memory leaks when deleting derived objects via base pointer
 
-		std::string getType() const;
-		virtual void makeSound() const;
+	// Returns the type of the animal
+	std::string getType() const;
+
+	// Virtual function enables runtime polymorphism (dynamic binding)
+	virtual void makeSound() const;
 };
 
 #endif

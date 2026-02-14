@@ -15,15 +15,17 @@
 
 #include "WrongAnimal.hpp"
 
+// WrongCat: demonstrates broken polymorphism (inherits from non-virtual base)
 class WrongCat : public WrongAnimal
 {
-	public:
-		WrongCat();
-		WrongCat(const WrongCat& other);
-		WrongCat& operator=(const WrongCat& other);
-		~WrongCat();
+public:
+	WrongCat();
+	WrongCat(const WrongCat &other);
+	WrongCat &operator=(const WrongCat &other);
+	~WrongCat();
 
-		void makeSound() const;
+	// This WON'T be called through WrongAnimal pointer (no virtual keyword in base)
+	void makeSound() const;
 };
 
 #endif
