@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pafuente <pafuente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 10:56:19 by pafuente          #+#    #+#             */
-/*   Updated: 2026/02/12 10:56:23 by pafuente         ###   ########.fr       */
+/*   Created: 2026/02/14 10:56:30 by pafuente          #+#    #+#             */
+/*   Updated: 2026/02/14 10:56:31 by pafuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Animal.hpp"
 #include <iostream>
 
-Cat::Cat()
+Animal::Animal()
 {
-	this->type = "Cat";
-	std::cout << "Cat default constructor called" << std::endl;
+	std::cout << "Animal default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Animal::Animal(const Animal& other)
 {
-	std::cout << "Cat copy constructor called" << std::endl;
+	std::cout << "Animal copy constructor called" << std::endl;
+	this->type = other.type;
 }
 
-Cat& Cat::operator=(const Cat& other)
+Animal& Animal::operator=(const Animal& other)
 {
-	std::cout << "Cat copy assignment operator called" << std::endl;
+	std::cout << "Animal copy assignment operator called" << std::endl;
 	if (this != &other)
 		this->type = other.type;
 	return *this;
 }
 
-Cat::~Cat()
+Animal::~Animal()
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Animal destructor called" << std::endl;
 }
 
-void Cat::makeSound() const
+std::string Animal::getType() const
 {
-	std::cout << "miauuuu" << std::endl;
+	return this->type;
 }

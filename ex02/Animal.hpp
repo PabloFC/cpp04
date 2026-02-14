@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pafuente <pafuente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 10:57:24 by pafuente          #+#    #+#             */
-/*   Updated: 2026/02/12 10:57:26 by pafuente         ###   ########.fr       */
+/*   Created: 2026/02/14 12:49:41 by pafuente          #+#    #+#             */
+/*   Updated: 2026/02/14 12:49:43 by pafuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-#define WRONGANIMAL_HPP
+
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
 #include <string>
 
-class WrongAnimal
+class Animal
 {
 	protected:
 		std::string type;
 
 	public:
-		WrongAnimal();
-		WrongAnimal(const WrongAnimal& other);
-		WrongAnimal& operator=(const WrongAnimal& other);
-		~WrongAnimal();
+		Animal();
+		Animal(const Animal& other);
+		Animal& operator=(const Animal& other);
+		virtual ~Animal();
 
 		std::string getType() const;
-		void makeSound() const;
+		virtual void makeSound() const = 0;  // Pure virtual function - makes Animal abstract
 };
 
 #endif

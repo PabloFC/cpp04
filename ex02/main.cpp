@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pafuente <pafuente@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 10:57:08 by pafuente          #+#    #+#             */
-/*   Updated: 2026/02/12 10:57:09 by pafuente         ###   ########.fr       */
+/*   Created: 2026/02/14 10:57:08 by pafuente          #+#    #+#             */
+/*   Updated: 2026/02/14 13:27:25 by pafuente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,19 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
-	std::cout << "----- Correct polymorphism -----" << std::endl;
-	const Animal* meta = new Animal();
-	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
+    const int size = 4;
+    Animal *animals[size];
 
-	std::cout << dog->getType() << std::endl;
-	std::cout << cat->getType() << std::endl;
+    for (int i = 0; i < size / 2; i++)
+        animals[i] = new Dog();
+    for (int i = size / 2; i < size; i++)
+        animals[i] = new Cat();
 
-	dog->makeSound();
-	cat->makeSound();
-	meta->makeSound();
+    for (int i = 0; i < size; i++)
+        delete animals[i];
 
-	delete meta;
-	delete dog;
-	delete cat;
-
-	std::cout << "\n----- Wrong polymorphism -----" << std::endl;
-	const WrongAnimal* wrong = new WrongCat();
-
-	std::cout << wrong->getType() << std::endl;
-	wrong->makeSound();
-
-	delete wrong;
-
-	return 0;
+    return 0;
 }
