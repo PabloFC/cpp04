@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
@@ -18,17 +17,17 @@
 
 class Animal
 {
-	protected:
-		std::string type;
+protected:
+	std::string type;
 
-	public:
-		Animal();
-		Animal(const Animal& other);
-		Animal& operator=(const Animal& other);
-		virtual ~Animal();
+public:
+	Animal();
+	Animal(const Animal &other);
+	Animal &operator=(const Animal &other);
+	virtual ~Animal() = 0;
 
-		std::string getType() const;
-		virtual void makeSound() const = 0;  // Pure virtual function - makes Animal abstract
+	std::string getType() const;
+	virtual void makeSound() const = 0; // Pure virtual function - makes Animal abstract
 };
 
 #endif
