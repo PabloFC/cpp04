@@ -13,6 +13,7 @@
 #include "Cat.hpp"
 #include <iostream>
 
+// Allocates a new Brain on the heap to ensure proper memory management
 Cat::Cat()
 {
 	type = "Cat";
@@ -20,13 +21,15 @@ Cat::Cat()
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+// Creates a deep copy by allocating a new Brain and copying its content
+Cat::Cat(const Cat &other) : Animal(other)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
 	brain = new Brain(*other.brain);
 }
 
-Cat& Cat::operator=(const Cat& other)
+// Deep copy assignment: deletes old Brain and creates a new one with copied content
+Cat &Cat::operator=(const Cat &other)
 {
 	std::cout << "Cat copy assignment operator called" << std::endl;
 	if (this != &other)
@@ -38,6 +41,7 @@ Cat& Cat::operator=(const Cat& other)
 	return *this;
 }
 
+// Frees the dynamically allocated Brain to prevent memory leaks
 Cat::~Cat()
 {
 	delete brain;
@@ -49,8 +53,7 @@ void Cat::makeSound() const
 	std::cout << "Meow!" << std::endl;
 }
 
-Brain* Cat::getBrain() const
+Brain *Cat::getBrain() const
 {
 	return brain;
 }
-

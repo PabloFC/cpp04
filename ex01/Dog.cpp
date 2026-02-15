@@ -16,6 +16,7 @@
 #include "Dog.hpp"
 #include <iostream>
 
+// Allocates a new Brain on the heap to ensure proper memory management
 Dog::Dog()
 {
 	type = "Dog";
@@ -23,13 +24,15 @@ Dog::Dog()
 	std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) : Animal(other)
+// Creates a deep copy by allocating a new Brain and copying its content
+Dog::Dog(const Dog &other) : Animal(other)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
 	brain = new Brain(*other.brain);
 }
 
-Dog& Dog::operator=(const Dog& other)
+// Deep copy assignment: deletes old Brain and creates a new one with copied content
+Dog &Dog::operator=(const Dog &other)
 {
 	std::cout << "Dog copy assignment operator called" << std::endl;
 	if (this != &other)
@@ -41,6 +44,7 @@ Dog& Dog::operator=(const Dog& other)
 	return *this;
 }
 
+// Frees the dynamically allocated Brain to prevent memory leaks
 Dog::~Dog()
 {
 	delete brain;
@@ -52,7 +56,7 @@ void Dog::makeSound() const
 	std::cout << "Woof!" << std::endl;
 }
 
-Brain* Dog::getBrain() const
+Brain *Dog::getBrain() const
 {
 	return brain;
 }

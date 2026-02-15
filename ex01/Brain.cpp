@@ -6,14 +6,16 @@ Brain::Brain()
 	std::cout << "Brain default constructor called" << std::endl;
 }
 
-Brain::Brain(const Brain& other)
+// Deep copy constructor: copies all 100 ideas from the original Brain
+Brain::Brain(const Brain &other)
 {
 	std::cout << "Brain copy constructor called" << std::endl;
 	for (int i = 0; i < 100; i++)
 		ideas[i] = other.ideas[i];
 }
 
-Brain& Brain::operator=(const Brain& other)
+// Deep copy assignment: performs deep copy of all ideas after self-assignment check
+Brain &Brain::operator=(const Brain &other)
 {
 	std::cout << "Brain copy assignment operator called" << std::endl;
 	if (this != &other)
@@ -29,7 +31,7 @@ Brain::~Brain()
 	std::cout << "Brain destructor called" << std::endl;
 }
 
-void Brain::setIdea(int index, const std::string& idea)
+void Brain::setIdea(int index, const std::string &idea)
 {
 	if (index >= 0 && index < 100)
 		ideas[index] = idea;

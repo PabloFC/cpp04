@@ -47,7 +47,6 @@ int main()
 
 	std::cout << wrong->getType() << std::endl; // Returns "WrongCat" (works)
 	wrong->makeSound();							// PROBLEM: Calls WrongAnimal's version, not WrongCat's!
-												// No virtual = static binding at compile time
 
 	delete wrong; // Only calls ~WrongAnimal(), not ~WrongCat() (potential leak!)
 
